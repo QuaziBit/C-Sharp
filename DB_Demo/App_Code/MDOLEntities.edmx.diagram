@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aa58ed7054c246138435df067720c09d" Name="Diagram1">
+        <EntityTypeShape EntityType="MDOLModel.Age" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Animal" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.AnimalRequirement" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Country" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.County" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Gender" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Origin" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Requirement" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.RequirementType" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Species" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.State" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Type" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="MDOLModel.Vaccination" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="MDOLModel.FK_Age" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Animal" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Origin" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Species" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Requirement" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_County" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_State" ManuallyRouted="false" />
+        <AssociationConnector Association="MDOLModel.FK_ReqType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

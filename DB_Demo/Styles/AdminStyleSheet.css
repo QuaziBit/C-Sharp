@@ -1,0 +1,94 @@
+﻿.class_big_content_wraper
+{
+
+}
+/*For Origin Page*/
+/*==============================*/
+.classCountry
+{
+    background-color: AntiqueWhite;
+}
+.classState
+{
+    background-color: Tan;
+}
+.classCounty
+{
+    background-color: Wheat;
+}
+.classOrigin
+{
+    background-color: BurlyWood;
+}
+/*==============================*/
+/*Animal Page*/
+/*==============================*/
+.classSpecies
+{
+    background-color: AntiqueWhite;
+}
+.classType
+{
+    background-color: Tan;
+}
+.classGender
+{
+    background-color: Wheat;
+}
+.classAge
+{
+    background-color: BurlyWood;
+}
+.classAnimalSelection
+{
+    background-color: PeachPuff;
+}
+.classAnimal
+{
+    background-color: PeachPuff;
+}
+.classAnimalButtons
+{
+    background-color: PeachPuff;
+}
+/*==============================*/
+
+/*For Requirements Page*/
+/*==============================*/
+.classAddReqType
+{
+    background-color: AntiqueWhite;
+}
+.classAddReqName
+{
+    background-color: Tan;
+}
+.classAddReqDescription
+{
+    background-color: Tan;
+}
+.classUpdateReqName
+{
+    background-color: BurlyWood;
+}
+.classUpdateReqDescriptions
+{
+    background-color: BurlyWood;
+}
+.classDeleteReqName
+{
+    background-color: BurlyWood;
+}
+/*==============================*/
+
+/*For Animal-Requirements Page*/
+/*==============================*/
+.classAddAnimalReq
+{
+    background-color: Tan;
+}
+.classAnimalSearch
+{
+    background-color: Wheat;
+}
+/*==============================*/

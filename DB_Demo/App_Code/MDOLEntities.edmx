@@ -1,0 +1,765 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MDOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Age">
+          <Key>
+            <PropertyRef Name="AgeID" />
+          </Key>
+          <Property Name="AgeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgeRange" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderID" Type="int" Nullable="false" />
+          <Property Name="TypeID" Type="int" Nullable="false" />
+          <Property Name="SpeciesID" Type="int" Nullable="false" />
+          <Property Name="AgeID" Type="int" Nullable="false" />
+          <Property Name="OriginID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnimalRequirements">
+          <Key>
+            <PropertyRef Name="Animal_ReqID" />
+          </Key>
+          <Property Name="Animal_ReqID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalID" Type="int" Nullable="false" />
+          <Property Name="RequirementID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="CountyID" />
+          </Key>
+          <Property Name="CountyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountyName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Origin">
+          <Key>
+            <PropertyRef Name="OriginID" />
+          </Key>
+          <Property Name="OriginID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="StateID" Type="int" Nullable="false" />
+          <Property Name="CountyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Requirement">
+          <Key>
+            <PropertyRef Name="RequirementID" />
+          </Key>
+          <Property Name="RequirementID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReqType_ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Link" Type="text" Nullable="false" />
+          <Property Name="Text" Type="text" Nullable="false" />
+          <Property Name="HTML" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequirementType">
+          <Key>
+            <PropertyRef Name="ReqType_ID" />
+          </Key>
+          <Property Name="ReqType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Species">
+          <Key>
+            <PropertyRef Name="SpeciesID" />
+          </Key>
+          <Property Name="SpeciesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpeciesName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="VaccinationID" />
+          </Key>
+          <Property Name="VaccinationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VaccinationName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Age">
+          <End Role="Age" Type="Self.Age" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Age">
+              <PropertyRef Name="AgeID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="AgeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="AnimalRequirements" Type="Self.AnimalRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="AnimalRequirements">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Origin" Type="Self.Origin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Origin">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_County">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Origin" Type="Self.Origin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyID" />
+            </Principal>
+            <Dependent Role="Origin">
+              <PropertyRef Name="CountyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Origin">
+          <End Role="Origin" Type="Self.Origin" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Origin">
+              <PropertyRef Name="OriginID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="OriginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReqType">
+          <End Role="RequirementType" Type="Self.RequirementType" Multiplicity="1" />
+          <End Role="Requirement" Type="Self.Requirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequirementType">
+              <PropertyRef Name="ReqType_ID" />
+            </Principal>
+            <Dependent Role="Requirement">
+              <PropertyRef Name="ReqType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requirement">
+          <End Role="Requirement" Type="Self.Requirement" Multiplicity="1" />
+          <End Role="AnimalRequirements" Type="Self.AnimalRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requirement">
+              <PropertyRef Name="RequirementID" />
+            </Principal>
+            <Dependent Role="AnimalRequirements">
+              <PropertyRef Name="RequirementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Species">
+          <End Role="Species" Type="Self.Species" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Species">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="SpeciesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Origin" Type="Self.Origin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="Origin">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MDOLModelStoreContainer">
+          <EntitySet Name="Age" EntityType="Self.Age" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalRequirements" EntityType="Self.AnimalRequirements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="County" EntityType="Self.County" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Origin" EntityType="Self.Origin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requirement" EntityType="Self.Requirement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequirementType" EntityType="Self.RequirementType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Species" EntityType="Self.Species" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vaccination" EntityType="Self.Vaccination" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Age" Association="Self.FK_Age">
+            <End Role="Age" EntitySet="Age" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal" Association="Self.FK_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="AnimalRequirements" EntitySet="AnimalRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country" Association="Self.FK_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Origin" EntitySet="Origin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_County" Association="Self.FK_County">
+            <End Role="County" EntitySet="County" />
+            <End Role="Origin" EntitySet="Origin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gender" Association="Self.FK_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Origin" Association="Self.FK_Origin">
+            <End Role="Origin" EntitySet="Origin" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReqType" Association="Self.FK_ReqType">
+            <End Role="RequirementType" EntitySet="RequirementType" />
+            <End Role="Requirement" EntitySet="Requirement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requirement" Association="Self.FK_Requirement">
+            <End Role="Requirement" EntitySet="Requirement" />
+            <End Role="AnimalRequirements" EntitySet="AnimalRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Species" Association="Self.FK_Species">
+            <End Role="Species" EntitySet="Species" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State" Association="Self.FK_State">
+            <End Role="State" EntitySet="State" />
+            <End Role="Origin" EntitySet="Origin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type" Association="Self.FK_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Animal" EntitySet="Animal" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MDOLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Age">
+          <Key>
+            <PropertyRef Name="AgeID" />
+          </Key>
+          <Property Name="AgeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgeRange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Age" FromRole="Age" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalID" />
+          </Key>
+          <Property Name="AnimalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="SpeciesID" Type="Int32" Nullable="false" />
+          <Property Name="AgeID" Type="Int32" Nullable="false" />
+          <Property Name="OriginID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Age" Relationship="Self.FK_Age" FromRole="Animal" ToRole="Age" />
+          <NavigationProperty Name="AnimalRequirements" Relationship="Self.FK_Animal" FromRole="Animal" ToRole="AnimalRequirements" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Gender" FromRole="Animal" ToRole="Gender" />
+          <NavigationProperty Name="Origin" Relationship="Self.FK_Origin" FromRole="Animal" ToRole="Origin" />
+          <NavigationProperty Name="Species" Relationship="Self.FK_Species" FromRole="Animal" ToRole="Species" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_Type" FromRole="Animal" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="AnimalRequirement">
+          <Key>
+            <PropertyRef Name="Animal_ReqID" />
+          </Key>
+          <Property Name="Animal_ReqID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalID" Type="Int32" Nullable="false" />
+          <Property Name="RequirementID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_Animal" FromRole="AnimalRequirements" ToRole="Animal" />
+          <NavigationProperty Name="Requirement" Relationship="Self.FK_Requirement" FromRole="AnimalRequirements" ToRole="Requirement" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryID" />
+          </Key>
+          <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Origins" Relationship="Self.FK_Country" FromRole="Country" ToRole="Origin" />
+        </EntityType>
+        <EntityType Name="County">
+          <Key>
+            <PropertyRef Name="CountyID" />
+          </Key>
+          <Property Name="CountyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Origins" Relationship="Self.FK_County" FromRole="County" ToRole="Origin" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Gender" FromRole="Gender" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Origin">
+          <Key>
+            <PropertyRef Name="OriginID" />
+          </Key>
+          <Property Name="OriginID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="StateID" Type="Int32" Nullable="false" />
+          <Property Name="CountyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Origin" FromRole="Origin" ToRole="Animal" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Country" FromRole="Origin" ToRole="Country" />
+          <NavigationProperty Name="County" Relationship="Self.FK_County" FromRole="Origin" ToRole="County" />
+          <NavigationProperty Name="State" Relationship="Self.FK_State" FromRole="Origin" ToRole="State" />
+        </EntityType>
+        <EntityType Name="Requirement">
+          <Key>
+            <PropertyRef Name="RequirementID" />
+          </Key>
+          <Property Name="RequirementID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReqType_ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HTML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AnimalRequirements" Relationship="Self.FK_Requirement" FromRole="Requirement" ToRole="AnimalRequirements" />
+          <NavigationProperty Name="RequirementType" Relationship="Self.FK_ReqType" FromRole="Requirement" ToRole="RequirementType" />
+        </EntityType>
+        <EntityType Name="RequirementType">
+          <Key>
+            <PropertyRef Name="ReqType_ID" />
+          </Key>
+          <Property Name="ReqType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Requirements" Relationship="Self.FK_ReqType" FromRole="RequirementType" ToRole="Requirement" />
+        </EntityType>
+        <EntityType Name="Species">
+          <Key>
+            <PropertyRef Name="SpeciesID" />
+          </Key>
+          <Property Name="SpeciesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpeciesName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Species" FromRole="Species" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Origins" Relationship="Self.FK_State" FromRole="State" ToRole="Origin" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Animals" Relationship="Self.FK_Type" FromRole="Type" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="Vaccination">
+          <Key>
+            <PropertyRef Name="VaccinationID" />
+          </Key>
+          <Property Name="VaccinationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VaccinationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Age">
+          <End Role="Age" Type="Self.Age" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Age">
+              <PropertyRef Name="AgeID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="AgeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+          <End Role="AnimalRequirements" Type="Self.AnimalRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalID" />
+            </Principal>
+            <Dependent Role="AnimalRequirements">
+              <PropertyRef Name="AnimalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Origin">
+          <End Role="Origin" Type="Self.Origin" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Origin">
+              <PropertyRef Name="OriginID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="OriginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Species">
+          <End Role="Species" Type="Self.Species" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Species">
+              <PropertyRef Name="SpeciesID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="SpeciesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Animal" Type="Self.Animal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="Animal">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requirement">
+          <End Role="Requirement" Type="Self.Requirement" Multiplicity="1" />
+          <End Role="AnimalRequirements" Type="Self.AnimalRequirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requirement">
+              <PropertyRef Name="RequirementID" />
+            </Principal>
+            <Dependent Role="AnimalRequirements">
+              <PropertyRef Name="RequirementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Origin" Type="Self.Origin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryID" />
+            </Principal>
+            <Dependent Role="Origin">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_County">
+          <End Role="County" Type="Self.County" Multiplicity="1" />
+          <End Role="Origin" Type="Self.Origin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="County">
+              <PropertyRef Name="CountyID" />
+            </Principal>
+            <Dependent Role="Origin">
+              <PropertyRef Name="CountyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_State">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="Origin" Type="Self.Origin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="StateID" />
+            </Principal>
+            <Dependent Role="Origin">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReqType">
+          <End Role="RequirementType" Type="Self.RequirementType" Multiplicity="1" />
+          <End Role="Requirement" Type="Self.Requirement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequirementType">
+              <PropertyRef Name="ReqType_ID" />
+            </Principal>
+            <Dependent Role="Requirement">
+              <PropertyRef Name="ReqType_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MDOLEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ages" EntityType="Self.Age" />
+          <EntitySet Name="Animals" EntityType="Self.Animal" />
+          <EntitySet Name="AnimalRequirements" EntityType="Self.AnimalRequirement" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Counties" EntityType="Self.County" />
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
+          <EntitySet Name="Origins" EntityType="Self.Origin" />
+          <EntitySet Name="Requirements" EntityType="Self.Requirement" />
+          <EntitySet Name="RequirementTypes" EntityType="Self.RequirementType" />
+          <EntitySet Name="Species" EntityType="Self.Species" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="Types" EntityType="Self.Type" />
+          <EntitySet Name="Vaccinations" EntityType="Self.Vaccination" />
+          <AssociationSet Name="FK_Age" Association="Self.FK_Age">
+            <End Role="Age" EntitySet="Ages" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Animal" Association="Self.FK_Animal">
+            <End Role="Animal" EntitySet="Animals" />
+            <End Role="AnimalRequirements" EntitySet="AnimalRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gender" Association="Self.FK_Gender">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Origin" Association="Self.FK_Origin">
+            <End Role="Origin" EntitySet="Origins" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Species" Association="Self.FK_Species">
+            <End Role="Species" EntitySet="Species" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type" Association="Self.FK_Type">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Animal" EntitySet="Animals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requirement" Association="Self.FK_Requirement">
+            <End Role="Requirement" EntitySet="Requirements" />
+            <End Role="AnimalRequirements" EntitySet="AnimalRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Country" Association="Self.FK_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Origin" EntitySet="Origins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_County" Association="Self.FK_County">
+            <End Role="County" EntitySet="Counties" />
+            <End Role="Origin" EntitySet="Origins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_State" Association="Self.FK_State">
+            <End Role="State" EntitySet="States" />
+            <End Role="Origin" EntitySet="Origins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReqType" Association="Self.FK_ReqType">
+            <End Role="RequirementType" EntitySet="RequirementTypes" />
+            <End Role="Requirement" EntitySet="Requirements" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MDOLModelStoreContainer" CdmEntityContainer="MDOLEntities1">
+          <EntitySetMapping Name="Ages">
+            <EntityTypeMapping TypeName="MDOLModel.Age">
+              <MappingFragment StoreEntitySet="Age">
+                <ScalarProperty Name="AgeID" ColumnName="AgeID" />
+                <ScalarProperty Name="AgeRange" ColumnName="AgeRange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="MDOLModel.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+                <ScalarProperty Name="AgeID" ColumnName="AgeID" />
+                <ScalarProperty Name="OriginID" ColumnName="OriginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalRequirements">
+            <EntityTypeMapping TypeName="MDOLModel.AnimalRequirement">
+              <MappingFragment StoreEntitySet="AnimalRequirements">
+                <ScalarProperty Name="Animal_ReqID" ColumnName="Animal_ReqID" />
+                <ScalarProperty Name="AnimalID" ColumnName="AnimalID" />
+                <ScalarProperty Name="RequirementID" ColumnName="RequirementID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="MDOLModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Counties">
+            <EntityTypeMapping TypeName="MDOLModel.County">
+              <MappingFragment StoreEntitySet="County">
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+                <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="MDOLModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Origins">
+            <EntityTypeMapping TypeName="MDOLModel.Origin">
+              <MappingFragment StoreEntitySet="Origin">
+                <ScalarProperty Name="OriginID" ColumnName="OriginID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requirements">
+            <EntityTypeMapping TypeName="MDOLModel.Requirement">
+              <MappingFragment StoreEntitySet="Requirement">
+                <ScalarProperty Name="RequirementID" ColumnName="RequirementID" />
+                <ScalarProperty Name="ReqType_ID" ColumnName="ReqType_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="HTML" ColumnName="HTML" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequirementTypes">
+            <EntityTypeMapping TypeName="MDOLModel.RequirementType">
+              <MappingFragment StoreEntitySet="RequirementType">
+                <ScalarProperty Name="ReqType_ID" ColumnName="ReqType_ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Species">
+            <EntityTypeMapping TypeName="MDOLModel.Species">
+              <MappingFragment StoreEntitySet="Species">
+                <ScalarProperty Name="SpeciesID" ColumnName="SpeciesID" />
+                <ScalarProperty Name="SpeciesName" ColumnName="SpeciesName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="MDOLModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="MDOLModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vaccinations">
+            <EntityTypeMapping TypeName="MDOLModel.Vaccination">
+              <MappingFragment StoreEntitySet="Vaccination">
+                <ScalarProperty Name="VaccinationID" ColumnName="VaccinationID" />
+                <ScalarProperty Name="VaccinationName" ColumnName="VaccinationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
